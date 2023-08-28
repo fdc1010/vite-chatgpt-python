@@ -9,7 +9,7 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 def home():
     return 'Hello! Chatgpt Route'
 
-@app.route('/chatgpt', methods = ['GET'])
+@app.route('/chatgpt')
 def get_chatgpt_response():
     while True:
         prompt = request.args.get('prompt') or 'AI'
