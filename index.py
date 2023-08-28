@@ -1,10 +1,8 @@
 import os
 import openai
 from flask import Flask, request
-from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 @app.route('/')
