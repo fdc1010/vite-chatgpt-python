@@ -11,19 +11,11 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 def home():
     return 'Hello! Chatgpt Route'
 
-@app.get('/chatgpt')
+@app.route('/chatgpt', methods = ['GET'])
 def get_chatgpt_response():
-    prompt = request.args.get('prompt') or 'AI'
-    messages = [{"role": "user", "content": prompt}]
-
-    response = openai.ChatCompletion.create(
-
-        model="gpt-3.5-turbo",
-
-        messages=messages,
-
-        temperature=0,
-
-    )
-
-    return response.choices[0].message["content"]
+    while True:
+        prompt = request.args.get('prompt') or 'AI'
+        messages = [{"role": "user", "content": prompt}]
+        chat = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages)
+        
+        return chat.choices[0].message.content    
